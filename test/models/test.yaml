@@ -1,0 +1,23 @@
+args:
+  n: 64
+  nc: 14
+
+modules:
+  - [backbone, backbone2]
+  - cat
+  - head
+
+backbone:
+  - [-1, 1, Conv2d, [3, 32, 3]]      # input: x
+  - [-1, 1, ReLU, [False]]           # input: backbone.0输出
+  - [-1, 1, Conv2d, [32, 32, 3, 1, 1]] # input: backbone.1输出，n替换为64
+
+backbone2:
+  - [-1, 1, Conv2d, [3, 32, 3]]      # input: x
+  - [-1, 1, ReLU, [False]]           # input: backbone.0输出
+
+cat:
+  - [[backbone.-1, backbone2.1], 1, Concat, []] # input: [backbone最后层, backbone2第1层]
+
+head:
+  - [-1, 1, Conv2d, [64, nc,3,3]]     # input: cat.0输出，nc替换为14

@@ -1,0 +1,45 @@
+model: 
+  yaml:  http://127.0.0.1:8000/home/classify.yaml # D:/work/ignet_ai_train/test/models/classify.yaml # 必填参数 类型: file_path or url yaml
+  args:
+    n: 1000
+    c: 3
+    nc: 2
+
+train_dataset:  # 必须 
+  name: image_folder
+  args:
+    root: http://192.168.74.132:1681/datasets/coco8/images.txt # file_path or url txt
+    crop_size: 256
+    color_space: "rgb"
+    mean: [0.485, 0.456, 0.406]
+    std: [0.229, 0.224, 0.225]
+
+eval_dataset: # 可选
+  name: image_folder
+  args:
+    root: http://192.168.74.132:1681/datasets/coco8/images.txt
+    crop_size: 256
+    color_space: "rgb"
+    mean: [0.485, 0.456, 0.406]
+    std: [0.229, 0.224, 0.225]
+
+optimizer: # 可选, 如果未设置使用默认AdamW
+  name: AdamW
+  args:
+    lr: 0.0001
+
+criterion: # 可选, 如果未设置使用默认CrossEntropyLoss
+  name: CrossEntropyLoss
+  args:
+    reduction: "mean"
+
+epochs: 100 # 可选，默认100
+batch_size: 16 # 可选，默认16
+
+# callbacks:  # 可选
+  # epoch_end:
+  #   - http://localhost:5000/api/v1/train/callback/epoch_end
+  # train_step:
+  #   - http://localhost:5000/api/v1/train/callback/train_step
+  # train_end:
+  #   - http://localhost:5000/api/v1/train/callback/train_end

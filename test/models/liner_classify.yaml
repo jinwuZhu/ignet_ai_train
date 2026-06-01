@@ -1,0 +1,37 @@
+args:
+  nc: 2
+  in_features: 512
+modules: # 指定模块次序
+  - liner
+  - backbone
+  - head
+
+liner:
+  - [-1, 1, Linear, [in_features, 128]]
+
+backbone:
+  - [-1, 1, Linear, [128, 256]]
+  - [-1, 1, CReLU, []]
+  
+  - [-1, 1, Linear, [512, 1024]]
+  - [-1, 1, CReLU, []]
+  - [-1, 1, Linear, [2048,512]]
+  - [-1, 1, CReLU, []]
+  - [-1, 1, Linear, [1024,256]]
+  - [-1, 1, CReLU, []]
+
+  - [backbone.7, 1, Linear, [512,512]]
+  - [backbone.1, 1, Linear, [512,512]]
+  - [[backbone.8,backbone.9], 1, SimpleAddFusion, []]
+  
+  - [-1, 1, Linear, [512,128]]
+  - [-1, 1, CReLU, []]
+  - [-1, 1, Linear, [256,64]]
+  - [-1, 1, CReLU, []]
+  - [-1, 1, Linear, [128,14]]
+  - [-1, 1, CReLU, []]
+  - [-1, 1, Linear, [28,14]]
+  - [-1, 1, ReLU, []]
+
+head:
+  - [-1, 1, Linear, [14, nc]]

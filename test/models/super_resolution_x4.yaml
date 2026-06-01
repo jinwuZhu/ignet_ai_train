@@ -1,0 +1,25 @@
+args:
+  c: 3
+
+modules: # 指定模块执行次序
+  - backbone
+  - head
+  
+backbone:
+  - [-1, 1, Conv2d, [c, 3, 3, 1, 1]]
+  - [-1, 1, ReLU, [True]]
+  - [-1, 1, Conv2d, [3, 4, 3, 1, 1]]
+  - [-1, 1, CReLU, [True]]
+  - [-1, 1, Conv2d, [8, 16, 3, 1, 1]]
+  - [-1, 1, CReLU, [True]]
+  - [-1, 1, Conv2d, [32, 16, 3, 1, 1]]
+  - [-1, 1, CReLU, [True]]
+  - [-1, 1, Conv2d, [32, 48, 3, 1, 1]]
+  - [-1, 1, PixelShuffle, [4]]
+  - [-1, 1, Conv2d, [3, 1, 1]]
+  - [-1, 1, Repeat, [[1,3,1,1]]]
+
+head:
+  - [backbone.0, 1, Upsample, [null,4]]
+  - [[head.0, backbone.-1],1, SimpleAddFusion, []]
+  - [-1, 1, Conv2d, [3, 1]]

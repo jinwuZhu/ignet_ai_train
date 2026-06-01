@@ -1,0 +1,37 @@
+model: 
+  yaml:  models/liner_classify.yaml # D:/work/ignet_ai_train/test/models/classify.yaml # 必须 file_path or url yaml
+  args:
+    c: 3
+    nc: 2
+    in_features: 2048
+
+train_dataset:  # 必须 
+  name: NpyFolder
+  args:
+    root: D:\work\ignet_ai\cache\crash\linux
+
+eval_dataset: # 可选
+  name: NpyFolder
+  args:
+    root: D:\work\ignet_ai\cache\crash\linux
+
+optimizer: # 可选, 如果未设置使用默认AdamW
+  name: AdamW
+  args:
+    lr: 0.0001
+
+criterion: # 可选, 如果未设置使用默认CrossEntropyLoss
+  name: CrossEntropyLoss
+  args:
+    reduction: "mean"
+
+epochs: 25 # 可选，默认100
+batch_size: 16 # 可选，默认16
+
+# callbacks:  # 可选
+  # epoch_end:
+  #   - http://localhost:5000/api/v1/train/callback/epoch_end
+  # train_step:
+  #   - http://localhost:5000/api/v1/train/callback/train_step
+  # train_end:
+  #   - http://localhost:5000/api/v1/train/callback/train_end

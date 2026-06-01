@@ -1,0 +1,15 @@
+args:
+  n: 1000
+  c: 1
+  nc: 14
+modules: # 指定模块次序
+  - [backbone]
+  - head
+  
+backbone:
+  - [-1, 1, Conv2d, [c, 3, 3, 1, 1]]
+  - [-1, 1, Sigmoid, []] # n： Retrieve parameters from args
+  - [-1, 1, resnet, [18, n]]
+
+head:
+  - [-1, 1, Linear, [n, nc]]

@@ -1,0 +1,14 @@
+args:
+  n: 1000
+  nc: 2
+  c: 3
+  version: v2
+  
+modules: # 指定模块次序
+  - layers
+  
+layers:
+  - [-1, 1, Conv2d, [c, 3, 1]]
+  - [-1, 1, Sigmoid, []] # n： Retrieve parameters from args
+  - [-1, 1, mobilenet, [version, n]]
+  - [-1, 1, Linear, [n, nc]]

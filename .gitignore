@@ -1,0 +1,25 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+#IDE Files
+.vscode/
+
+# Virtual environments
+.venv
+.env
+
+# cache files
+.ignet_/
+cache/
+checkpoints/
+runs/
+datasets/
+test/test.py
+latest.zip
+AGENTS.md
+uv.toml
