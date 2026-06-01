@@ -1,6 +1,6 @@
 # IGNet AI Train
 
-一个灵活的深度学习模型训练框架，支持多种神经网络架构和数据集类型。
+一个灵活的深度学习模型训练工具包，支持多种神经网络架构和数据集类型。
 
 ## 项目概述
 
@@ -45,10 +45,12 @@ uv sync
 
 ### 基础用法
 
+- 参考训练[配置说明](TRAIN_CONFIG.md)文档，生产训练配置
+
 - 使用 CLI 训练模型
 
 ```bash
-python -m ignet_ai_train --config test/models/mobilenet.yaml
+python -m ignet_ai_train --config test/train.yaml
 ```
 
 - 集成到Python项目

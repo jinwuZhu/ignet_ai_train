@@ -28,7 +28,7 @@ criterion: # 可选, 如果未设置使用默认CrossEntropyLoss
 epochs: 25 # 可选，默认100
 batch_size: 16 # 可选，默认16
 
-# callbacks:  # 可选
+# callbacks:  # 可选，配置回调
   # epoch_end:
   #   - http://localhost:5000/api/v1/train/callback/epoch_end
   # train_step:
