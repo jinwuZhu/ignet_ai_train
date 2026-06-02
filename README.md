@@ -10,37 +10,15 @@ IGNet AI Train 是一个基于 PyTorch 的模型训练框架，提供了模块�
 - 灵活的模型配置系统
 - 优化器和训练工具集
 
-
-## 项目结构
-
-```
-ignet_ai_train/
-├── __main__.py           # 项目入口
-├── cli.py               # 命令行接口
-├── config.py            # 配置管理
-├── model_builder.py     # 模型构建器
-├── dataset/             # 数据集模块
-│   ├── create.py        # 数据集创建
-│   └── modules/         # 数据集类型（音频、图像、NPY）
-├── nn/                  # 神经网络模块
-│   ├── create.py        # 网络创建
-│   └── modules/         # 网络层（MobileNet、CReLU、Roll Mix 等）
-├── optim/               # 优化器模块
-│   └── modules/         # 优化器实现（Muon 等）
-└── utils/               # 工具函数
-    ├── train.py         # 训练工具
-    ├── eval.py          # 评估工具
-    └── ...
-```
-
 ## 快速开始
 
-### 安装依赖
+### 安装
 
-本项目使用UV管理依赖，Python版本3.11+
+> 开发此项目参考[开发指引](DEV_GUIDANCE.md)
 
-```bash
-uv sync
+1. 通过源码安装
+```
+pip install git+https://github.com/jinwuZhu/ignet_ai_train
 ```
 
 ### 基础用法
